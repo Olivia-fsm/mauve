@@ -103,7 +103,7 @@ def featurize_tokens_from_model(model, tokenized_texts, batch_size, name="", ver
         chunk_sent_lengths.append([len(_c) for _c in _chunk])
         chunk_idx += 1
 
-    for chunk, chunk_sent_length in tqdm(list(zip(chunks, chunk_sent_lengths)), desc=f"Featurizing {name}"):
+    for chunk, chunk_sent_length in list(zip(chunks, chunk_sent_lengths)):
         padded_chunk = torch.nn.utils.rnn.pad_sequence(chunk,
                                                        batch_first=True,
                                                        padding_value=0).to(device)
